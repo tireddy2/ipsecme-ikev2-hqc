@@ -1,0 +1,7 @@
+<note title="Discussion Venues" removeInRFC="true">
+<t>Discussion of this document takes place on the
+    IP Security Maintenance and Extensions Working Group mailing list (ipsec@ietf.org),
+    which is archived at <eref target="https://mailarchive.ietf.org/arch/browse/ipsec/"/>.</t>
+<t>Source for this draft and an issue tracker can be found at
+    <eref target="https://github.com/tireddy2/ipsecme-ikev2-hqc"/>.</t>
+</note>
