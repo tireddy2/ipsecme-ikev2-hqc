@@ -130,6 +130,12 @@ CREATE_CHILD_SA, or IKE_FOLLOWUP_KE exchanges, which can be
 fragmented using {{RFC7383}}. HQC can also be used alone in
 CREATE_CHILD_SA as specified in {{RFC7296}}.
 
+IKE fragmentation under {{RFC7383}} is available only if both peers
+have indicated their support by exchanging
+IKEV2_FRAGMENTATION_SUPPORTED notifications in IKE_SA_INIT. Support
+for multiple key exchanges under {{RFC9370}} alone does not imply
+support for IKE fragmentation.
+
 ## Recipient Tests {#tests}
 
 Version 2025-08-22 of {{HQC}} does not define checks on a received
