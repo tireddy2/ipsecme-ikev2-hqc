@@ -1,0 +1,327 @@
+
+
+
+
+IP Security Maintenance and Extensions                          T. Reddy
+Internet-Draft                                                     Nokia
+Intended status: Standards Track                           H. Tschofenig
+Expires: 21 April 2027                                          UniBw M.
+                                                         18 October 2026
+
+
+Post-Quantum Key Exchange with HQC in the Internet Key Exchange Protocol
+                           Version 2 (IKEv2)
+                  draft-reddy-ipsecme-ikev2-hqc-latest
+
+Abstract
+
+   This document specifies how to use HQC, a code-based Key
+   Encapsulation Mechanism (KEM), in the Internet Key Exchange Protocol
+   Version 2 (IKEv2).  HQC can be used alone or together with a
+   traditional key exchange to derive IKE and Child SA keys that resist
+   attacks by quantum computers.  This document registers three Key
+   Exchange Method identifiers.
+
+Discussion Venues
+
+   This note is to be removed before publishing as an RFC.
+
+   Discussion of this document takes place on the IP Security
+   Maintenance and Extensions Working Group mailing list
+   (ipsec@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/ipsec/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/tireddy2/ipsecme-ikev2-hqc.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 21 April 2027.
+
+Copyright Notice
+
+   Copyright (c) 2026 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  HQC in IKEv2
+     3.1.  Key Exchange Method Transform IDs
+     3.2.  Key Exchange Payload
+     3.3.  Use in IKE Exchanges
+     3.4.  Recipient Tests
+   4.  Security Considerations
+   5.  IANA Considerations
+   6.  References
+     6.1.  Normative References
+     6.2.  Informative References
+   Acknowledgments
+   Authors' Addresses
+
+1.  Introduction
+
+   HQC [HQC] is a code-based KEM selected by NIST for standardization as
+   a backup to ML-KEM.  It relies on a different hardness assumption
+   than ML-KEM.
+
+   [IKEV2-MLKEM] defines ML-KEM key exchange in IKEv2 [RFC7296].  This
+   document defines HQC key exchange in IKEv2 in the same way.  It
+   defines HQC-1, HQC-3, and HQC-5 as IKEv2 Key Exchange Methods.
+
+   HQC can be used alone or in a PQ/T hybrid [RFC9794] with a
+   traditional (EC)DH key exchange using the multiple key exchanges of
+   [RFC9370].
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   This document uses the KEM functions KeyGen, Encaps, and Decaps of
+   [HQC]. ek is the HQC encapsulation key, dk is the HQC decapsulation
+   key, ct is the HQC ciphertext, and K is the shared secret.
+
+3.  HQC in IKEv2
+
+3.1.  Key Exchange Method Transform IDs
+
+             +=======+==============+========================+
+             | Name  | Transform ID | NIST Security Category |
+             +=======+==============+========================+
+             | hqc-1 |         TBD1 |                      1 |
+             +-------+--------------+------------------------+
+             | hqc-3 |         TBD2 |                      3 |
+             +-------+--------------+------------------------+
+             | hqc-5 |         TBD3 |                      5 |
+             +-------+--------------+------------------------+
+
+                     Table 1: HQC Key Exchange Methods
+
+3.2.  Key Exchange Payload
+
+   The initiator runs KeyGen to obtain ek and dk.  The Key Exchange Data
+   of the initiator's KE payload is ek.
+
+   The responder runs Encaps on ek to obtain K and ct.  The Key Exchange
+   Data of the responder's KE payload is ct.
+
+   The initiator runs Decaps on ct with dk to obtain K.
+
+   ek and ct are the byte strings defined in Sections 3.5 and 3.6 of
+   [HQC].  Table 2 gives their lengths and the resulting KE payload
+   lengths.  The KE payload length includes the 8-octet KE payload
+   header.
+
+       +=======+======+======================+=======+============+
+       | Name  |   ek | Initiator KE payload |    ct |  Responder |
+       |       |      |                      |       | KE payload |
+       +=======+======+======================+=======+============+
+       | hqc-1 | 2241 |                 2249 |  4433 |       4441 |
+       +-------+------+----------------------+-------+------------+
+       | hqc-3 | 4514 |                 4522 |  8978 |       8986 |
+       +-------+------+----------------------+-------+------------+
+       | hqc-5 | 7237 |                 7245 | 14421 |      14429 |
+       +-------+------+----------------------+-------+------------+
+
+                Table 2: HQC KE payload lengths in octets
+
+   K is 32 octets.  It is used as the shared secret in the key
+   derivation of [RFC7296] and [RFC9370], in the same way as the (EC)DH
+   shared secret.
+
+3.3.  Use in IKE Exchanges
+
+   HQC KE payloads exceed the typical path MTU.  IKE_SA_INIT messages
+   cannot be fragmented using [RFC7383].  Therefore, HQC SHOULD NOT be
+   used in IKE_SA_INIT, unless the IKE_SA_INIT exchange itself is
+   carried over TCP [RFC9329], including the mode described in
+   Section 3.2 of [IKEV2-RT].  Switching to TCP only after IKE_SA_INIT,
+   as described in Section 3.1 of [IKEV2-RT], does not avoid IP
+   fragmentation of HQC KE payloads in IKE_SA_INIT.
+
+   HQC SHOULD be negotiated as an additional key exchange using
+   [RFC9370].  It is then carried in IKE_INTERMEDIATE [RFC9242],
+   CREATE_CHILD_SA, or IKE_FOLLOWUP_KE exchanges, which can be
+   fragmented using [RFC7383].  HQC can also be used alone in
+   CREATE_CHILD_SA as specified in [RFC7296].
+
+3.4.  Recipient Tests
+
+   Version 2025-08-22 of [HQC] does not define checks on a received ek
+   or ct beyond their lengths.
+
+   The responder MUST check that the length of ek matches Table 2.  If
+   the check fails, the responder MUST reject ek and SHOULD return an
+   INVALID_SYNTAX notification.
+
+   The initiator MUST check that the length of ct matches Table 2.  If
+   the check fails, the initiator MUST fail the exchange as specified
+   for a failed ciphertext check in Section 2.2 of [IKEV2-MLKEM].
+
+   HQC Decaps uses implicit rejection.  A modified ct yields a different
+   K, and the exchange fails when the peers authenticate or use the
+   derived keys.
+
+4.  Security Considerations
+
+   The security considerations of [RFC7296], [RFC9242], [RFC9370], and
+   [IKEV2-MLKEM] apply.
+
+   PQ/T hybrid use of HQC with (EC)DH is RECOMMENDED, following
+   Section 13.3.1 of [RFC9958].
+
+   Each HQC key exchange MUST use a fresh ek and dk, and fresh
+   encapsulation randomness.  In a PQ/T hybrid, the HQC and (EC)DH keys
+   MUST NOT be derived from the same seed.
+
+   HQC has a small decryption failure probability, given in Section 4.1
+   of [HQC].  On a decryption failure, Decaps returns a pseudorandom K
+   instead of an error.  The peers then derive different keys, and the
+   resulting IKE SA or Child SA does not work.
+
+   An attacker can try to downgrade the peers to a traditional key
+   exchange.  The downgrade considerations of [IKEV2-MLKEM] and
+   [IKEV2-DOWNGRADE] apply.
+
+5.  IANA Considerations
+
+   IANA is requested to add the following entries to the "Transform Type
+   4 - Key Exchange Method Transform IDs" registry.
+
+          +========+=======+=======================+===========+
+          | Number | Name  | Recipient Tests       | Reference |
+          +========+=======+=======================+===========+
+          | TBD1   | hqc-1 | RFC XXXX, Section 3.4 | RFC XXXX  |
+          +--------+-------+-----------------------+-----------+
+          | TBD2   | hqc-3 | RFC XXXX, Section 3.4 | RFC XXXX  |
+          +--------+-------+-----------------------+-----------+
+          | TBD3   | hqc-5 | RFC XXXX, Section 3.4 | RFC XXXX  |
+          +--------+-------+-----------------------+-----------+
+
+              Table 3: HQC Key Exchange Method registrations
+
+   RFC Editor: Replace XXXX with the RFC number of this document.
+
+6.  References
+
+6.1.  Normative References
+
+   [HQC]      HQC team, "Hamming Quasi-Cyclic (HQC)", 22 August 2025,
+              <https://pqc-hqc.org/doc/
+              hqc_specifications_2025_08_22.pdf>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC7296]  Kaufman, C., Hoffman, P., Nir, Y., Eronen, P., and T.
+              Kivinen, "Internet Key Exchange Protocol Version 2
+              (IKEv2)", STD 79, RFC 7296, DOI 10.17487/RFC7296, October
+              2014, <https://www.rfc-editor.org/rfc/rfc7296>.
+
+   [RFC7383]  Smyslov, V., "Internet Key Exchange Protocol Version 2
+              (IKEv2) Message Fragmentation", RFC 7383,
+              DOI 10.17487/RFC7383, November 2014,
+              <https://www.rfc-editor.org/rfc/rfc7383>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC9242]  Smyslov, V., "Intermediate Exchange in the Internet Key
+              Exchange Protocol Version 2 (IKEv2)", RFC 9242,
+              DOI 10.17487/RFC9242, May 2022,
+              <https://www.rfc-editor.org/rfc/rfc9242>.
+
+   [RFC9370]  Tjhai, CJ., Tomlinson, M., Bartlett, G., Fluhrer, S., Van
+              Geest, D., Garcia-Morchon, O., and V. Smyslov, "Multiple
+              Key Exchanges in the Internet Key Exchange Protocol
+              Version 2 (IKEv2)", RFC 9370, DOI 10.17487/RFC9370, May
+              2023, <https://www.rfc-editor.org/rfc/rfc9370>.
+
+6.2.  Informative References
+
+   [IKEV2-DOWNGRADE]
+              Smyslov, V. and C. Patton, "Downgrade Prevention for the
+              Internet Key Exchange Protocol Version 2 (IKEv2)", Work in
+              Progress, Internet-Draft, draft-ietf-ipsecme-ikev2-
+              downgrade-prevention-08, 1 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-
+              ikev2-downgrade-prevention-08>.
+
+   [IKEV2-MLKEM]
+              Kampanakis, P., "Post-quantum Key Exchange with ML-KEM in
+              the Internet Key Exchange Protocol Version 2 (IKEv2)",
+              Work in Progress, Internet-Draft, draft-ietf-ipsecme-
+              ikev2-mlkem-09, 5 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-
+              ikev2-mlkem-09>.
+
+   [IKEV2-RT] Smyslov, V. and T. Reddy.K, "Separate Transports for IKE
+              and ESP", Work in Progress, Internet-Draft, draft-ietf-
+              ipsecme-ikev2-reliable-transport-08, 1 October 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-
+              ikev2-reliable-transport-08>.
+
+   [RFC9329]  Pauly, T. and V. Smyslov, "TCP Encapsulation of Internet
+              Key Exchange Protocol (IKE) and IPsec Packets", RFC 9329,
+              DOI 10.17487/RFC9329, November 2022,
+              <https://www.rfc-editor.org/rfc/rfc9329>.
+
+   [RFC9794]  Driscoll, F., Parsons, M., and B. Hale, "Terminology for
+              Post-Quantum Traditional Hybrid Schemes", RFC 9794,
+              DOI 10.17487/RFC9794, June 2025,
+              <https://www.rfc-editor.org/rfc/rfc9794>.
+
+   [RFC9958]  Banerjee, A., Reddy.K, T., Schoinianakis, D., Hollebeek,
+              T., and M. Ounsworth, "Post-Quantum Cryptography for
+              Engineers", RFC 9958, DOI 10.17487/RFC9958, June 2026,
+              <https://www.rfc-editor.org/rfc/rfc9958>.
+
+Acknowledgments
+
+   This document follows the structure of [IKEV2-MLKEM].
+
+Authors' Addresses
+
+   Tirumaleswar Reddy
+   Nokia
+   Bangalore
+   Karnataka
+   India
+   Email: kondtir@gmail.com
+
+
+   Hannes Tschofenig
+   University of the Bundeswehr Munich
+   85577 Neubiberg
+   Germany
+   Email: hannes.tschofenig@gmx.net
