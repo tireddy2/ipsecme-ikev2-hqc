@@ -153,6 +153,13 @@ derived keys.
 The security considerations of {{RFC7296}}, {{RFC9242}}, {{RFC9370}},
 and {{IKEV2-MLKEM}} apply.
 
+This document provides post-quantum key establishment to protect
+against harvest-now-decrypt-later attacks. It does not change IKEv2
+authentication. Resistance to active quantum attackers also requires
+an authentication method that provides post-quantum security, such
+as a sufficiently strong pre-shared key or a post-quantum signature
+scheme, as discussed in Section 4 of {{RFC9370}}.
+
 PQ/T hybrid use of HQC with (EC)DH is RECOMMENDED, following Section
 13.3.1 of {{RFC9958}}.
 
