@@ -157,8 +157,12 @@ PQ/T hybrid use of HQC with (EC)DH is RECOMMENDED, following Section
 13.3.1 of {{RFC9958}}.
 
 Each HQC key exchange MUST use a fresh `ek` and `dk`, and fresh
-encapsulation randomness. In a PQ/T hybrid, the HQC and (EC)DH keys
-MUST NOT be derived from the same seed.
+encapsulation randomness. The randomness used for HQC key generation
+and encapsulation MUST be independent of the randomness used by any
+other key exchange in the same IKEv2 negotiation, including (EC)DH
+and other post-quantum KEMs. In a hybrid key exchange, HQC keys and
+the keys of any other component MUST NOT be generated from the same
+seed.
 
 HQC has a small decryption failure probability, given in Section 4.1
 of {{HQC}}. On a decryption failure, Decaps returns a pseudorandom
