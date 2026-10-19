@@ -213,8 +213,10 @@ and other post-quantum KEMs. In a hybrid key exchange, HQC keys and
 the keys of any other component MUST NOT be generated from the same
 seed.
 
-HQC has a small decryption failure probability, given in Section 4.1
-of {{HQC}}. On a decryption failure, Decaps returns a pseudorandom
+HQC has a small decryption failure probability.
+This failure is where the two sides exchange valid keyshares, which are delivered properly, but the two sides generate distinct secrets.
+This probability is given in Section 4.1 of {{HQC}} and is so low, decryption failure likely will never happen a single time in practice.
+Should a decryption failure happen, Decaps returns a pseudorandom
 `K` instead of an error. The peers then derive different keys, and
 the resulting IKE SA or Child SA does not work.
 
