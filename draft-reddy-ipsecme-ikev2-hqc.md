@@ -100,6 +100,13 @@ secret.
 
 ## Key Exchange Payload {#ke}
 
+As in Section 2.2 of {{RFC7296}}, initiator and responder refer to
+the roles in the exchange being described, rather than necessarily
+the original roles of the IKE SA. Either peer can initiate a
+CREATE_CHILD_SA exchange. The peer initiating that exchange generates
+the HQC keypair, including for any associated IKE_FOLLOWUP_KE
+exchanges, and the other peer performs encapsulation.
+
 The initiator runs KeyGen to obtain `ek` and `dk`. The Key Exchange
 Data of the initiator's KE payload is `ek`.
 
