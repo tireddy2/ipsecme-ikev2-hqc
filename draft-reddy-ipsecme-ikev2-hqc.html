@@ -1372,8 +1372,11 @@ derivation of <span>[<a href="#RFC7296" class="cite xref">RFC7296</a>]</span> an
         </h3>
 <p id="section-3.3-1">HQC KE payloads exceed the typical path MTU. IKE_SA_INIT messages
 cannot be fragmented using <span>[<a href="#RFC7383" class="cite xref">RFC7383</a>]</span>. Therefore, HQC <span class="bcp14">SHOULD NOT</span> be
-used in IKE_SA_INIT, unless the IKE SA uses TCP <span>[<a href="#RFC9329" class="cite xref">RFC9329</a>]</span> or
-reliable transport <span>[<a href="#IKEV2-RT" class="cite xref">IKEV2-RT</a>]</span>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+used in IKE_SA_INIT, unless the IKE_SA_INIT exchange itself is
+carried over TCP <span>[<a href="#RFC9329" class="cite xref">RFC9329</a>]</span>, including the mode described in
+Section 3.2 of <span>[<a href="#IKEV2-RT" class="cite xref">IKEV2-RT</a>]</span>. Switching to TCP only after IKE_SA_INIT,
+as described in Section 3.1 of <span>[<a href="#IKEV2-RT" class="cite xref">IKEV2-RT</a>]</span>, does not avoid IP
+fragmentation of HQC KE payloads in IKE_SA_INIT.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.3-2">HQC <span class="bcp14">SHOULD</span> be negotiated as an additional key exchange using
 <span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>. During initial IKE SA establishment, an additional HQC
 key exchange is carried in IKE_INTERMEDIATE <span>[<a href="#RFC9242" class="cite xref">RFC9242</a>]</span>. For IKE SA

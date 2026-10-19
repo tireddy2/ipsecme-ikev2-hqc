@@ -185,8 +185,11 @@ Table of Contents
 
    HQC KE payloads exceed the typical path MTU.  IKE_SA_INIT messages
    cannot be fragmented using [RFC7383].  Therefore, HQC SHOULD NOT be
-   used in IKE_SA_INIT, unless the IKE SA uses TCP [RFC9329] or reliable
-   transport [IKEV2-RT].
+   used in IKE_SA_INIT, unless the IKE_SA_INIT exchange itself is
+   carried over TCP [RFC9329], including the mode described in
+   Section 3.2 of [IKEV2-RT].  Switching to TCP only after IKE_SA_INIT,
+   as described in Section 3.1 of [IKEV2-RT], does not avoid IP
+   fragmentation of HQC KE payloads in IKE_SA_INIT.
 
    HQC SHOULD be negotiated as an additional key exchange using
    [RFC9370].  During initial IKE SA establishment, an additional HQC
