@@ -103,6 +103,17 @@ Table of Contents
    traditional (EC)DH key exchange using the multiple key exchanges of
    [RFC9370].
 
+   HQC can also be combined with ML-KEM [IKEV2-MLKEM], with or without a
+   traditional key exchange, using [RFC9370].  Combining code-based HQC
+   with lattice-based ML-KEM provides algorithmic diversity against
+   advances in cryptanalysis affecting either family.  For example,
+   peers can perform an (EC)DH key exchange in IKE_SA_INIT, ML-KEM-768
+   as Additional Key Exchange 1, and HQC-3 as Additional Key Exchange 2,
+   with each additional key exchange carried in its own IKE_INTERMEDIATE
+   exchange.  These combinations use the existing multiple-key-exchange
+   negotiation and key derivation mechanisms; they do not require
+   separate Transform IDs for each combination.
+
 2.  Conventions and Definitions
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",

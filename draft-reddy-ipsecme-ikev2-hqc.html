@@ -1229,6 +1229,16 @@ HQC-1, HQC-3, and HQC-5 as IKEv2 Key Exchange Methods.<a href="#section-1-3" cla
 <p id="section-1-4">HQC can be used alone or in a PQ/T hybrid <span>[<a href="#RFC9794" class="cite xref">RFC9794</a>]</span> with a
 traditional (EC)DH key exchange using the multiple key exchanges of
 <span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">HQC can also be combined with ML-KEM <span>[<a href="#IKEV2-MLKEM" class="cite xref">IKEV2-MLKEM</a>]</span>, with or
+without a traditional key exchange, using <span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>. Combining
+code-based HQC with lattice-based ML-KEM provides algorithmic
+diversity against advances in cryptanalysis affecting either family.
+For example, peers can perform an (EC)DH key exchange in IKE_SA_INIT,
+ML-KEM-768 as Additional Key Exchange 1, and HQC-3 as Additional Key
+Exchange 2, with each additional key exchange carried in its own
+IKE_INTERMEDIATE exchange. These combinations use the existing
+multiple-key-exchange negotiation and key derivation mechanisms;
+they do not require separate Transform IDs for each combination.<a href="#section-1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
