@@ -130,7 +130,7 @@ key exchange is carried in IKE_INTERMEDIATE {{RFC9242}}. For IKE SA
 rekeying and Child SA creation or rekeying, an additional HQC key
 exchange is carried in IKE_FOLLOWUP_KE. These exchanges can be
 fragmented using {{RFC7383}}. HQC can also be used as the first or
-only key exchange in CREATE_CHILD_SA as specified in {{RFC7296}}.
+only key exchange in CREATE_CHILD_SA as specified in {{RFC9370}}.
 
 ## Recipient Tests {#tests}
 
