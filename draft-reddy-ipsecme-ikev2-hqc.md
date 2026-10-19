@@ -32,6 +32,7 @@ normative:
   RFC7383:
   RFC9242:
   RFC9370:
+  IKEV2-MLKEM: I-D.ietf-ipsecme-ikev2-mlkem
   HQC:
     title: "Hamming Quasi-Cyclic (HQC)"
     author:
@@ -42,7 +43,6 @@ informative:
   RFC9329:
   RFC9794:
   RFC9958:
-  IKEV2-MLKEM: I-D.ietf-ipsecme-ikev2-mlkem
   IKEV2-RT: I-D.ietf-ipsecme-ikev2-reliable-transport
   IKEV2-DOWNGRADE: I-D.ietf-ipsecme-ikev2-downgrade-prevention
 
@@ -158,7 +158,13 @@ SHOULD return an INVALID_SYNTAX notification.
 The initiator MUST check that the length of `ct` matches
 {{len-table}}. If the check fails, the initiator MUST fail the
 exchange as specified for a failed ciphertext check in Section 2.2 of
-{{IKEV2-MLKEM}}.
+{{IKEV2-MLKEM}}. In particular, the initiator MUST reject the
+ciphertext, log the error, and stop creating the SA, without initiating
+IKE_AUTH or the next IKE_INTERMEDIATE exchange. If the error occurs
+in CREATE_CHILD_SA or IKE_FOLLOWUP_KE, the initiator MUST delete the
+existing IKE SA and send a Delete payload in a new INFORMATIONAL
+exchange. Deleting the IKE SA also closes its remaining Child SAs,
+as specified in Section 1.4.1 of {{RFC7296}}.
 
 HQC Decaps uses implicit rejection. A modified `ct` yields a different
 `K`, and the exchange fails when the peers authenticate or use the
