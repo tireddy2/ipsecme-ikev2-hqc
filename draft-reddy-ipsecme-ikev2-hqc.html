@@ -1371,6 +1371,11 @@ rekeying and Child SA creation or rekeying, an additional HQC key
 exchange is carried in IKE_FOLLOWUP_KE. These exchanges can be
 fragmented using <span>[<a href="#RFC7383" class="cite xref">RFC7383</a>]</span>. HQC can also be used as the first or
 only key exchange in CREATE_CHILD_SA as specified in <span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">IKE fragmentation under <span>[<a href="#RFC7383" class="cite xref">RFC7383</a>]</span> is available only if both peers
+have indicated their support by exchanging
+IKEV2_FRAGMENTATION_SUPPORTED notifications in IKE_SA_INIT. Support
+for multiple key exchanges under <span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span> alone does not imply
+support for IKE fragmentation.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="tests">
