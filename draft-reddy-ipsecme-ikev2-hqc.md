@@ -63,6 +63,13 @@ HQC {{HQC}} is a code-based KEM selected by NIST for standardization
 as a backup to ML-KEM. It relies on a different hardness assumption
 than ML-KEM.
 
+> Editor's note: This document is based on the HQC specification of
+> 2025-08-22. Before publication as an RFC, the parameter set names,
+> key and ciphertext encodings and sizes, shared secret size, and
+> recipient tests need to be checked against the final NIST HQC
+> standard and updated as necessary. The normative HQC reference also
+> needs to be updated. Remove this note before publication.
+
 {{IKEV2-MLKEM}} defines ML-KEM key exchange in IKEv2 {{RFC7296}}. This
 document defines HQC key exchange in IKEv2 in the same way. It defines
 HQC-1, HQC-3, and HQC-5 as IKEv2 Key Exchange Methods.
