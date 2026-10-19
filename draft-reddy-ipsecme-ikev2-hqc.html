@@ -1359,10 +1359,12 @@ cannot be fragmented using <span>[<a href="#RFC7383" class="cite xref">RFC7383</
 used in IKE_SA_INIT, unless the IKE SA uses TCP <span>[<a href="#RFC9329" class="cite xref">RFC9329</a>]</span> or
 reliable transport <span>[<a href="#IKEV2-RT" class="cite xref">IKEV2-RT</a>]</span>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.3-2">HQC <span class="bcp14">SHOULD</span> be negotiated as an additional key exchange using
-<span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>. It is then carried in IKE_INTERMEDIATE <span>[<a href="#RFC9242" class="cite xref">RFC9242</a>]</span>,
-CREATE_CHILD_SA, or IKE_FOLLOWUP_KE exchanges, which can be
-fragmented using <span>[<a href="#RFC7383" class="cite xref">RFC7383</a>]</span>. HQC can also be used alone in
-CREATE_CHILD_SA as specified in <span>[<a href="#RFC7296" class="cite xref">RFC7296</a>]</span>.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>. During initial IKE SA establishment, an additional HQC
+key exchange is carried in IKE_INTERMEDIATE <span>[<a href="#RFC9242" class="cite xref">RFC9242</a>]</span>. For IKE SA
+rekeying and Child SA creation or rekeying, an additional HQC key
+exchange is carried in IKE_FOLLOWUP_KE. These exchanges can be
+fragmented using <span>[<a href="#RFC7383" class="cite xref">RFC7383</a>]</span>. HQC can also be used as the first or
+only key exchange in CREATE_CHILD_SA as specified in <span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="tests">
