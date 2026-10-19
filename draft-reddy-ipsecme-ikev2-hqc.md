@@ -132,10 +132,12 @@ used in IKE_SA_INIT, unless the IKE SA uses TCP {{RFC9329}} or
 reliable transport {{IKEV2-RT}}.
 
 HQC SHOULD be negotiated as an additional key exchange using
-{{RFC9370}}. It is then carried in IKE_INTERMEDIATE {{RFC9242}},
-CREATE_CHILD_SA, or IKE_FOLLOWUP_KE exchanges, which can be
-fragmented using {{RFC7383}}. HQC can also be used alone in
-CREATE_CHILD_SA as specified in {{RFC7296}}.
+{{RFC9370}}. During initial IKE SA establishment, an additional HQC
+key exchange is carried in IKE_INTERMEDIATE {{RFC9242}}. For IKE SA
+rekeying and Child SA creation or rekeying, an additional HQC key
+exchange is carried in IKE_FOLLOWUP_KE. These exchanges can be
+fragmented using {{RFC7383}}. HQC can also be used as the first or
+only key exchange in CREATE_CHILD_SA as specified in {{RFC9370}}.
 
 ## Recipient Tests {#tests}
 
