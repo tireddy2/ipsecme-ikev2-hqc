@@ -1431,8 +1431,12 @@ scheme, as discussed in Section 4 of <span>[<a href="#RFC9370" class="cite xref"
 <p id="section-4-3">PQ/T hybrid use of HQC with (EC)DH is <span class="bcp14">RECOMMENDED</span>, following Section
 13.3.1 of <span>[<a href="#RFC9958" class="cite xref">RFC9958</a>]</span>.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">Each HQC key exchange <span class="bcp14">MUST</span> use a fresh <code>ek</code> and <code>dk</code>, and fresh
-encapsulation randomness. In a PQ/T hybrid, the HQC and (EC)DH keys
-<span class="bcp14">MUST NOT</span> be derived from the same seed.<a href="#section-4-4" class="pilcrow">¶</a></p>
+encapsulation randomness. The randomness used for HQC key generation
+and encapsulation <span class="bcp14">MUST</span> be independent of the randomness used by any
+other key exchange in the same IKEv2 negotiation, including (EC)DH
+and other post-quantum KEMs. In a hybrid key exchange, HQC keys and
+the keys of any other component <span class="bcp14">MUST NOT</span> be generated from the same
+seed.<a href="#section-4-4" class="pilcrow">¶</a></p>
 <p id="section-4-5">HQC has a small decryption failure probability, given in Section 4.1
 of <span>[<a href="#HQC" class="cite xref">HQC</a>]</span>. On a decryption failure, Decaps returns a pseudorandom
 <code>K</code> instead of an error. The peers then derive different keys, and
