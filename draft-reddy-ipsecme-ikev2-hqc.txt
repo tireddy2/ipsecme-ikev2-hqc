@@ -196,7 +196,14 @@ Table of Contents
 
    The initiator MUST check that the length of ct matches Table 2.  If
    the check fails, the initiator MUST fail the exchange as specified
-   for a failed ciphertext check in Section 2.2 of [IKEV2-MLKEM].
+   for a failed ciphertext check in Section 2.2 of [IKEV2-MLKEM].  In
+   particular, the initiator MUST reject the ciphertext, log the error,
+   and stop creating the SA, without initiating IKE_AUTH or the next
+   IKE_INTERMEDIATE exchange.  If the error occurs in CREATE_CHILD_SA or
+   IKE_FOLLOWUP_KE, the initiator MUST delete the existing IKE SA and
+   send a Delete payload in a new INFORMATIONAL exchange.  Deleting the
+   IKE SA also closes its remaining Child SAs, as specified in
+   Section 1.4.1 of [RFC7296].
 
    HQC Decaps uses implicit rejection.  A modified ct yields a different
    K, and the exchange fails when the peers authenticate or use the
@@ -250,6 +257,14 @@ Table of Contents
               <https://pqc-hqc.org/doc/
               hqc_specifications_2025_08_22.pdf>.
 
+   [IKEV2-MLKEM]
+              Kampanakis, P., "Post-quantum Key Exchange with ML-KEM in
+              the Internet Key Exchange Protocol Version 2 (IKEv2)",
+              Work in Progress, Internet-Draft, draft-ietf-ipsecme-
+              ikev2-mlkem-09, 5 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-
+              ikev2-mlkem-09>.
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -289,14 +304,6 @@ Table of Contents
               downgrade-prevention-08, 1 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-
               ikev2-downgrade-prevention-08>.
-
-   [IKEV2-MLKEM]
-              Kampanakis, P., "Post-quantum Key Exchange with ML-KEM in
-              the Internet Key Exchange Protocol Version 2 (IKEv2)",
-              Work in Progress, Internet-Draft, draft-ietf-ipsecme-
-              ikev2-mlkem-09, 5 July 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-
-              ikev2-mlkem-09>.
 
    [IKEV2-RT] Smyslov, V. and T. Reddy.K, "Separate Transports for IKE
               and ESP", Work in Progress, Internet-Draft, draft-ietf-

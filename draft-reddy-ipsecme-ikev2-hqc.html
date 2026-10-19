@@ -1386,7 +1386,13 @@ only key exchange in CREATE_CHILD_SA as specified in <span>[<a href="#RFC9370" c
 <p id="section-3.4-3">The initiator <span class="bcp14">MUST</span> check that the length of <code>ct</code> matches
 <a href="#len-table" class="auto internal xref">Table 2</a>. If the check fails, the initiator <span class="bcp14">MUST</span> fail the
 exchange as specified for a failed ciphertext check in Section 2.2 of
-<span>[<a href="#IKEV2-MLKEM" class="cite xref">IKEV2-MLKEM</a>]</span>.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
+<span>[<a href="#IKEV2-MLKEM" class="cite xref">IKEV2-MLKEM</a>]</span>. In particular, the initiator <span class="bcp14">MUST</span> reject the
+ciphertext, log the error, and stop creating the SA, without initiating
+IKE_AUTH or the next IKE_INTERMEDIATE exchange. If the error occurs
+in CREATE_CHILD_SA or IKE_FOLLOWUP_KE, the initiator <span class="bcp14">MUST</span> delete the
+existing IKE SA and send a Delete payload in a new INFORMATIONAL
+exchange. Deleting the IKE SA also closes its remaining Child SAs,
+as specified in Section 1.4.1 of <span>[<a href="#RFC7296" class="cite xref">RFC7296</a>]</span>.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 <p id="section-3.4-4">HQC Decaps uses implicit rejection. A modified <code>ct</code> yields a different
 <code>K</code>, and the exchange fails when the peers authenticate or use the
 derived keys.<a href="#section-3.4-4" class="pilcrow">¶</a></p>
@@ -1479,6 +1485,10 @@ exchange. The downgrade considerations of <span>[<a href="#IKEV2-MLKEM" class="c
         <dd>
 <span class="refAuthor">HQC team</span>, <span class="refTitle">"Hamming Quasi-Cyclic (HQC)"</span>, <time datetime="2025-08-22" class="refDate">22 August 2025</time>, <span>&lt;<a href="https://pqc-hqc.org/doc/hqc_specifications_2025_08_22.pdf">https://pqc-hqc.org/doc/hqc_specifications_2025_08_22.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="IKEV2-MLKEM">[IKEV2-MLKEM]</dt>
+        <dd>
+<span class="refAuthor">Kampanakis, P.</span>, <span class="refTitle">"Post-quantum Key Exchange with ML-KEM in the Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-mlkem-09</span>, <time datetime="2026-07-05" class="refDate">5 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
@@ -1515,10 +1525,6 @@ exchange. The downgrade considerations of <span>[<a href="#IKEV2-MLKEM" class="c
 <dt id="IKEV2-DOWNGRADE">[IKEV2-DOWNGRADE]</dt>
         <dd>
 <span class="refAuthor">Smyslov, V.</span> and <span class="refAuthor">C. Patton</span>, <span class="refTitle">"Downgrade Prevention for the Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-downgrade-prevention-08</span>, <time datetime="2026-07-01" class="refDate">1 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-downgrade-prevention-08">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-downgrade-prevention-08</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="IKEV2-MLKEM">[IKEV2-MLKEM]</dt>
-        <dd>
-<span class="refAuthor">Kampanakis, P.</span>, <span class="refTitle">"Post-quantum Key Exchange with ML-KEM in the Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-mlkem-09</span>, <time datetime="2026-07-05" class="refDate">5 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IKEV2-RT">[IKEV2-RT]</dt>
         <dd>
