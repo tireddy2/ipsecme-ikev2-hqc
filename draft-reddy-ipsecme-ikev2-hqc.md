@@ -27,6 +27,10 @@ author:
   code: '85577'
   country: Germany
   email: hannes.tschofenig@gmx.net
+-
+  fullname: Scott Fluhrer
+  organization: Cisco Systems
+  email: "sfluhrer@cisco.com"
 normative:
   RFC7296:
   RFC7383:
