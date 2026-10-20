@@ -5,8 +5,8 @@
 IP Security Maintenance and Extensions                          T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                           H. Tschofenig
-Expires: 22 April 2027                                          UniBw M.
-                                                         19 October 2026
+Expires: 23 April 2027                                          UniBw M.
+                                                         20 October 2026
 
 
 Post-Quantum Key Exchange with HQC in the Internet Key Exchange Protocol
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 April 2027.
+   This Internet-Draft will expire on 23 April 2027.
 
 Copyright Notice
 
@@ -252,10 +252,14 @@ Table of Contents
    the keys of any other component MUST NOT be generated from the same
    seed.
 
-   HQC has a small decryption failure probability, given in Section 4.1
-   of [HQC].  On a decryption failure, Decaps returns a pseudorandom K
-   instead of an error.  The peers then derive different keys, and the
-   resulting IKE SA or Child SA does not work.
+   HQC has a small decryption failure probability.  This failure is
+   where the two sides exchange valid keyshares, which are delivered
+   properly, but the two sides generate distinct secrets.  This
+   probability is given in Section 4.1 of [HQC] and is so low,
+   decryption failure likely will never happen a single time in
+   practice.  Should a decryption failure happen, Decaps returns a
+   pseudorandom K instead of an error.  The peers then derive different
+   keys, and the resulting IKE SA or Child SA does not work.
 
    An attacker can try to downgrade the peers to a traditional key
    exchange.  The downgrade considerations of [IKEV2-MLKEM] and
