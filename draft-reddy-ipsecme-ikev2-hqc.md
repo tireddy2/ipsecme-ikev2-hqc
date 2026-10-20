@@ -36,7 +36,6 @@ normative:
   RFC7383:
   RFC9242:
   RFC9370:
-  IKEV2-MLKEM: I-D.ietf-ipsecme-ikev2-mlkem
   HQC:
     title: "Hamming Quasi-Cyclic (HQC)"
     author:
@@ -44,6 +43,7 @@ normative:
     date: 2025-08-22
     target: https://pqc-hqc.org/doc/hqc_specifications_2025_08_22.pdf
 informative:
+  IKEV2-MLKEM: I-D.ietf-ipsecme-ikev2-mlkem
   RFC9329:
   RFC9794:
   RFC9958:
@@ -52,11 +52,11 @@ informative:
 
 --- abstract
 
-This document specifies how to use HQC, a code-based Key Encapsulation
-Mechanism (KEM), in the Internet Key Exchange Protocol Version 2
-(IKEv2). HQC can be used alone or together with a traditional key
-exchange to derive IKE and Child SA keys that resist attacks by
-quantum computers. This document registers three Key Exchange Method
+This document specifies how to use Hamming Quasi-Cyclic (HQC), a
+code-based Key Encapsulation Mechanism (KEM), in the Internet Key
+Exchange Protocol Version 2 (IKEv2). HQC can be used alone or together
+with other key exchanges to derive IKE and Child SA keys that resist
+attacks by quantum computers. This document registers three Key Exchange Method
 identifiers.
 
 --- middle
@@ -102,6 +102,10 @@ This document uses the KEM functions KeyGen, Encaps, and Decaps of
 decapsulation key, `ct` is the HQC ciphertext, and `K` is the shared
 secret.
 
+As in Section 2.2 of {{RFC7296}}, "initiator" and "responder" refer
+to the roles in the exchange that carries the KE payload, not the
+original roles of the IKE SA.
+
 # HQC in IKEv2 {#hqc-ikev2}
 
 ## Key Exchange Method Transform IDs {#ids}
@@ -114,13 +118,6 @@ secret.
 {: #ids-table title="HQC Key Exchange Methods"}
 
 ## Key Exchange Payload {#ke}
-
-As in Section 2.2 of {{RFC7296}}, initiator and responder refer to
-the roles in the exchange being described, rather than necessarily
-the original roles of the IKE SA. Either peer can initiate a
-CREATE_CHILD_SA exchange. The peer initiating that exchange generates
-the HQC keypair, including for any associated IKE_FOLLOWUP_KE
-exchanges, and the other peer performs encapsulation.
 
 The initiator runs KeyGen to obtain `ek` and `dk`. The Key Exchange
 Data of the initiator's KE payload is `ek`.
@@ -180,9 +177,7 @@ The responder MUST check that the length of `ek` matches
 SHOULD return an INVALID_SYNTAX notification.
 
 The initiator MUST check that the length of `ct` matches
-{{len-table}}. If the check fails, the initiator MUST fail the
-exchange as specified for a failed ciphertext check in Section 2.2 of
-{{IKEV2-MLKEM}}. In particular, the initiator MUST reject the
+{{len-table}}. If the check fails, the initiator MUST reject the
 ciphertext, log the error, and stop creating the SA, without initiating
 IKE_AUTH or the next IKE_INTERMEDIATE exchange. If the error occurs
 in CREATE_CHILD_SA or IKE_FOLLOWUP_KE, the initiator MUST delete the
@@ -196,8 +191,8 @@ derived keys.
 
 # Security Considerations
 
-The security considerations of {{RFC7296}}, {{RFC9242}}, {{RFC9370}},
-and {{IKEV2-MLKEM}} apply.
+The security considerations of {{RFC7296}}, {{RFC9242}}, and
+{{RFC9370}} apply.
 
 This document provides post-quantum key establishment to protect
 against harvest-now-decrypt-later attacks. It does not change IKEv2
@@ -247,4 +242,5 @@ RFC Editor: Replace XXXX with the RFC number of this document.
 # Acknowledgments
 {:numbered="false"}
 
-This document follows the structure of {{IKEV2-MLKEM}}.
+This document follows the structure of {{IKEV2-MLKEM}}. The authors
+thank Valery Smyslov for his review and comments.
