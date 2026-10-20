@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-18T03:06:07.005415+00:00",
+  "timestamp": "2026-10-20T03:28:47.428024+00:00",
   "repo": "tireddy2/ipsecme-ikev2-hqc",
   "labels": [
     {
@@ -54,6 +54,435 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
-  "pulls": []
+  "issues": [
+    {
+      "number": 10,
+      "id": "I_kwDOVKhwHM8AAAABYYPcsw",
+      "title": "Are KE payloads required to be a multiple of 4 bytes in length?",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/issues/10",
+      "state": "OPEN",
+      "author": "sfluhrer",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I can't tell from the RFCs.  RFC 7296 has the uninformative sentence (end of section 3.2)\n\n    Some payloads in IKEv2 (and historically in IKEv1) are not aligned to 4-octet boundaries.\n\nWithout saying which \"some payloads\" these are",
+      "createdAt": "2026-10-19T20:25:53Z",
+      "updatedAt": "2026-10-19T20:25:53Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOVKhwHM8AAAABJMF7Ow",
+      "title": "Track alignment with the final NIST HQC standard",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/1",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:23:49Z",
+      "updatedAt": "2026-10-19T05:46:36Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/hqc-standardization-note",
+      "headRefOid": "4b7eef579e426fbf3ecdcf0ece3529b88496790b",
+      "closedAt": "2026-10-19T05:46:36Z",
+      "mergedAt": "2026-10-19T05:46:36Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "d891f5958cf1f43d311c711abbc67cdbcb56fe0a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9e_og",
+          "commit": {
+            "abbreviatedOid": "4b7eef5"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T05:46:25Z",
+          "updatedAt": "2026-10-19T05:46:25Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOVKhwHM8AAAABJMGA1A",
+      "title": "Clarify where additional HQC key exchanges are carried",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/2",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:23:59Z",
+      "updatedAt": "2026-10-19T05:53:24Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/additional-ke-exchanges",
+      "headRefOid": "f2175f18918e9367b10f770d477512c9bbe81a5e",
+      "closedAt": "2026-10-19T05:53:24Z",
+      "mergedAt": "2026-10-19T05:53:24Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "155ca609d4de0fc66f013c3171ef14ff12aaec57"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9hf2w",
+          "commit": {
+            "abbreviatedOid": "5d3764c"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T05:52:49Z",
+          "updatedAt": "2026-10-19T05:52:59Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "```suggestion\nonly key exchange in CREATE_CHILD_SA as specified in {{RFC9370}}.\n```",
+              "createdAt": "2026-10-19T05:52:50Z",
+              "updatedAt": "2026-10-19T05:52:59Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOVKhwHM8AAAABJMGFhA",
+      "title": "Clarify KEM roles when either peer initiates a rekey",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/3",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:24:08Z",
+      "updatedAt": "2026-10-19T05:58:17Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/exchange-initiator-roles",
+      "headRefOid": "609c477c8ed0ca9f1ca6a47c27e021997e68ea9d",
+      "closedAt": "2026-10-19T05:58:17Z",
+      "mergedAt": "2026-10-19T05:58:17Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "eb5aa93b9e93ed98af235e949785da60877e9acd"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9jfyQ",
+          "commit": {
+            "abbreviatedOid": "609c477"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T05:58:09Z",
+          "updatedAt": "2026-10-19T05:58:09Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOVKhwHM8AAAABJMGJgw",
+      "title": "Make the ML-KEM dependency normative and expose failure handling",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/4",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:24:16Z",
+      "updatedAt": "2026-10-19T06:01:42Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/normative-mlkem-error-handling",
+      "headRefOid": "6dfd1b367534953e46e761f9fba8e4700ece8ad2",
+      "closedAt": "2026-10-19T06:01:42Z",
+      "mergedAt": "2026-10-19T06:01:42Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "f6233883ee4e6f69440f3626e48f5253c6fe0d8e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9k2dg",
+          "commit": {
+            "abbreviatedOid": "6dfd1b3"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T06:01:34Z",
+          "updatedAt": "2026-10-19T06:01:34Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOVKhwHM8AAAABJMGNsA",
+      "title": "Distinguish post-quantum key exchange from authentication",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/5",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:24:23Z",
+      "updatedAt": "2026-10-19T06:05:50Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/quantum-authentication-scope",
+      "headRefOid": "8bde3f4328a0de371840d4df8e2d6d84daf3906a",
+      "closedAt": "2026-10-19T06:05:50Z",
+      "mergedAt": "2026-10-19T06:05:50Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "126d8e6a31f583fa43f3a851e7cefbcb4757dfa4"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9mY_g",
+          "commit": {
+            "abbreviatedOid": "8bde3f4"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T06:05:41Z",
+          "updatedAt": "2026-10-19T06:05:41Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOVKhwHM8AAAABJMGRKw",
+      "title": "State the negotiation prerequisite for IKE fragmentation",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/6",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:24:30Z",
+      "updatedAt": "2026-10-19T06:08:46Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/fragmentation-negotiation",
+      "headRefOid": "bb98822582b14528650d18ee6c57723cb0207480",
+      "closedAt": "2026-10-19T06:08:45Z",
+      "mergedAt": "2026-10-19T06:08:45Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "6b3a783040b8e64df0a8c85a3f7ce9149d5d192a"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9nmhA",
+          "commit": {
+            "abbreviatedOid": "bb98822"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T06:08:38Z",
+          "updatedAt": "2026-10-19T06:08:38Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOVKhwHM8AAAABJMGVQQ",
+      "title": "Describe HQC and ML-KEM combinations for algorithmic diversity",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/7",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:24:38Z",
+      "updatedAt": "2026-10-19T06:12:01Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/pq-pq-hybrid-example",
+      "headRefOid": "f56d2a7c5550059392562fb07afc8fdbf5ba03f0",
+      "closedAt": "2026-10-19T06:12:01Z",
+      "mergedAt": "2026-10-19T06:12:01Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "ea23f612f804f1ec9d4ade1ef924ac119feb2bdf"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9o8HQ",
+          "commit": {
+            "abbreviatedOid": "f56d2a7"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T06:11:53Z",
+          "updatedAt": "2026-10-19T06:11:53Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOVKhwHM8AAAABJMGaEA",
+      "title": "Extend randomness independence to all hybrid components",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/8",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:24:47Z",
+      "updatedAt": "2026-10-19T06:15:04Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/independent-hybrid-randomness",
+      "headRefOid": "8257caa83ce47ce07379950a5b2b9952e10ecdd0",
+      "closedAt": "2026-10-19T06:15:04Z",
+      "mergedAt": "2026-10-19T06:15:04Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "bff54ccb6aff6e96344f2bd93575ffc992db65bc"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9qGhQ",
+          "commit": {
+            "abbreviatedOid": "8257caa"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T06:14:54Z",
+          "updatedAt": "2026-10-19T06:14:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOVKhwHM8AAAABJMGeLQ",
+      "title": "Require TCP from IKE_SA_INIT for the HQC transport exception",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/9",
+      "state": "MERGED",
+      "author": "hannestschofenig",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-18T18:24:54Z",
+      "updatedAt": "2026-10-19T06:18:07Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "538b2e69e6c4cdce308b72e6398121b5da17c1fd",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "review/tcp-from-ike-sa-init",
+      "headRefOid": "6e68bb00d5b2d753df58db84b33f749aaf0e920c",
+      "closedAt": "2026-10-19T06:18:07Z",
+      "mergedAt": "2026-10-19T06:18:06Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "f8016567ba648f72534cd0506c9f9f4fe16f5c79"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABS9rU0w",
+          "commit": {
+            "abbreviatedOid": "6e68bb0"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-19T06:17:59Z",
+          "updatedAt": "2026-10-19T06:17:59Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOVKhwHM8AAAABJa4cAw",
+      "title": "Revise decryption failure text",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/11",
+      "state": "OPEN",
+      "author": "sfluhrer",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-19T20:41:12Z",
+      "updatedAt": "2026-10-19T20:41:13Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "f8016567ba648f72534cd0506c9f9f4fe16f5c79",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "sfluhrer-decryption-failure",
+      "headRefOid": "35e8485170aa673f2f88959061494520fa76b0e0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
