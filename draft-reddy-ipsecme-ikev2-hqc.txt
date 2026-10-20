@@ -6,6 +6,8 @@ IP Security Maintenance and Extensions                          T. Reddy
 Internet-Draft                                                     Nokia
 Intended status: Standards Track                           H. Tschofenig
 Expires: 23 April 2027                                          UniBw M.
+                                                              S. Fluhrer
+                                                           Cisco Systems
                                                          20 October 2026
 
 
@@ -380,3 +382,8 @@ Authors' Addresses
    85577 Neubiberg
    Germany
    Email: hannes.tschofenig@gmx.net
+
+
+   Scott Fluhrer
+   Cisco Systems
+   Email: sfluhrer@cisco.com
