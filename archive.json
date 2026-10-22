@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-20T03:28:47.428024+00:00",
+  "timestamp": "2026-10-22T03:22:17.011102+00:00",
   "repo": "tireddy2/ipsecme-ikev2-hqc",
   "labels": [
     {
@@ -67,9 +67,17 @@
       "labels": [],
       "body": "I can't tell from the RFCs.  RFC 7296 has the uninformative sentence (end of section 3.2)\n\n    Some payloads in IKEv2 (and historically in IKEv1) are not aligned to 4-octet boundaries.\n\nWithout saying which \"some payloads\" these are",
       "createdAt": "2026-10-19T20:25:53Z",
-      "updatedAt": "2026-10-19T20:25:53Z",
+      "updatedAt": "2026-10-20T14:31:28Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "smyslov",
+          "authorAssociation": "NONE",
+          "body": "I belive that no such aligning requirement exists for any IKEv2 payload. At least in my code all payloads can be of any size >= size of their corresponding header. Payloads are aligned with no padding in between.",
+          "createdAt": "2026-10-20T14:31:27Z",
+          "updatedAt": "2026-10-20T14:31:27Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -463,20 +471,90 @@
       "id": "PR_kwDOVKhwHM8AAAABJa4cAw",
       "title": "Revise decryption failure text",
       "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/11",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "sfluhrer",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-10-19T20:41:12Z",
-      "updatedAt": "2026-10-19T20:41:13Z",
+      "updatedAt": "2026-10-20T05:20:34Z",
       "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
       "baseRefName": "main",
       "baseRefOid": "f8016567ba648f72534cd0506c9f9f4fe16f5c79",
       "headRepository": "tireddy2/ipsecme-ikev2-hqc",
       "headRefName": "sfluhrer-decryption-failure",
       "headRefOid": "35e8485170aa673f2f88959061494520fa76b0e0",
+      "closedAt": "2026-10-20T05:20:34Z",
+      "mergedAt": "2026-10-20T05:20:34Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "8f739b2fdf1023f1129f1a5442a76fb8c8a959b6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABTKgVMA",
+          "commit": {
+            "abbreviatedOid": "35e8485"
+          },
+          "author": "tireddy2",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-20T05:20:26Z",
+          "updatedAt": "2026-10-20T05:20:26Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOVKhwHM8AAAABJiXL0A",
+      "title": "Add Scott as co-author",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/12",
+      "state": "MERGED",
+      "author": "tireddy2",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-20T11:21:05Z",
+      "updatedAt": "2026-10-20T11:21:15Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "8f739b2fdf1023f1129f1a5442a76fb8c8a959b6",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "tireddy2-patch-1",
+      "headRefOid": "99a969f25c9dd2bdac9bbe2229bfac7fc5f43c6f",
+      "closedAt": "2026-10-20T11:21:15Z",
+      "mergedAt": "2026-10-20T11:21:15Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "c265f24d7c0db82bc446a5a4df0481b543afbf17"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOVKhwHM8AAAABJkcX_w",
+      "title": "Address comments from Valery",
+      "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/13",
+      "state": "OPEN",
+      "author": "tireddy2",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-10-20T14:20:28Z",
+      "updatedAt": "2026-10-20T14:20:37Z",
+      "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "baseRefName": "main",
+      "baseRefOid": "c265f24d7c0db82bc446a5a4df0481b543afbf17",
+      "headRepository": "tireddy2/ipsecme-ikev2-hqc",
+      "headRefName": "tireddy2-patch-2",
+      "headRefOid": "7a5bae0d4ba96fa3884d3ecad84e27d8b7d38c7c",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
