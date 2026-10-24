@@ -9,11 +9,11 @@
 <meta content="Hannes Tschofenig" name="author">
 <meta content="Scott Fluhrer" name="author">
 <meta content="
-       This document specifies how to use HQC, a code-based Key Encapsulation
-Mechanism (KEM), in the Internet Key Exchange Protocol Version 2
-(IKEv2). HQC can be used alone or together with a traditional key
-exchange to derive IKE and Child SA keys that resist attacks by
-quantum computers. This document registers three Key Exchange Method
+       This document specifies how to use Hamming Quasi-Cyclic (HQC), a
+code-based Key Encapsulation Mechanism (KEM), in the Internet Key
+Exchange Protocol Version 2 (IKEv2). HQC can be used alone or together
+with other key exchanges to derive IKE and Child SA keys that resist
+attacks by quantum computers. This document registers three Key Exchange Method
 identifiers. 
     " name="description">
 <meta content="xml2rfc 3.34.1" name="generator">
@@ -1055,7 +1055,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Reddy, et al.</td>
-<td class="center">Expires 23 April 2027</td>
+<td class="center">Expires 27 April 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg {
 <dd class="internet-draft">draft-reddy-ipsecme-ikev2-hqc-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-10-20" class="published">20 October 2026</time>
+<time datetime="2026-10-24" class="published">24 October 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-04-23">23 April 2027</time></dd>
+<dd class="expires"><time datetime="2027-04-27">27 April 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1094,11 +1094,11 @@ svg {
 <h1 id="title">Post-Quantum Key Exchange with HQC in the Internet Key Exchange Protocol Version 2 (IKEv2)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document specifies how to use HQC, a code-based Key Encapsulation
-Mechanism (KEM), in the Internet Key Exchange Protocol Version 2
-(IKEv2). HQC can be used alone or together with a traditional key
-exchange to derive IKE and Child SA keys that resist attacks by
-quantum computers. This document registers three Key Exchange Method
+<p id="section-abstract-1">This document specifies how to use Hamming Quasi-Cyclic (HQC), a
+code-based Key Encapsulation Mechanism (KEM), in the Internet Key
+Exchange Protocol Version 2 (IKEv2). HQC can be used alone or together
+with other key exchanges to derive IKE and Child SA keys that resist
+attacks by quantum computers. This document registers three Key Exchange Method
 identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
@@ -1131,7 +1131,7 @@ identifiers.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 23 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1259,6 +1259,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <span>[<a href="#HQC" class="cite xref">HQC</a>]</span>. <code>ek</code> is the HQC encapsulation key, <code>dk</code> is the HQC
 decapsulation key, <code>ct</code> is the HQC ciphertext, and <code>K</code> is the shared
 secret.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">As in Section 2.2 of <span>[<a href="#RFC7296" class="cite xref">RFC7296</a>]</span>, "initiator" and "responder" refer
+to the roles in the exchange that carries the KE payload, not the
+original roles of the IKE SA.<a href="#section-2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="hqc-ikev2">
@@ -1310,21 +1313,15 @@ secret.<a href="#section-2-2" class="pilcrow">¶</a></p>
         <h3 id="name-key-exchange-payload">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-key-exchange-payload" class="section-name selfRef">Key Exchange Payload</a>
         </h3>
-<p id="section-3.2-1">As in Section 2.2 of <span>[<a href="#RFC7296" class="cite xref">RFC7296</a>]</span>, initiator and responder refer to
-the roles in the exchange being described, rather than necessarily
-the original roles of the IKE SA. Either peer can initiate a
-CREATE_CHILD_SA exchange. The peer initiating that exchange generates
-the HQC keypair, including for any associated IKE_FOLLOWUP_KE
-exchanges, and the other peer performs encapsulation.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">The initiator runs KeyGen to obtain <code>ek</code> and <code>dk</code>. The Key Exchange
-Data of the initiator's KE payload is <code>ek</code>.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.2-3">The responder runs Encaps on <code>ek</code> to obtain <code>K</code> and <code>ct</code>. The Key
-Exchange Data of the responder's KE payload is <code>ct</code>.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-<p id="section-3.2-4">The initiator runs Decaps on <code>ct</code> with <code>dk</code> to obtain <code>K</code>.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
-<p id="section-3.2-5"><code>ek</code> and <code>ct</code> are the byte strings defined in Sections 3.5 and 3.6 of
+<p id="section-3.2-1">The initiator runs KeyGen to obtain <code>ek</code> and <code>dk</code>. The Key Exchange
+Data of the initiator's KE payload is <code>ek</code>.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">The responder runs Encaps on <code>ek</code> to obtain <code>K</code> and <code>ct</code>. The Key
+Exchange Data of the responder's KE payload is <code>ct</code>.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">The initiator runs Decaps on <code>ct</code> with <code>dk</code> to obtain <code>K</code>.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-4"><code>ek</code> and <code>ct</code> are the byte strings defined in Sections 3.5 and 3.6 of
 <span>[<a href="#HQC" class="cite xref">HQC</a>]</span>. <a href="#len-table" class="auto internal xref">Table 2</a> gives their lengths and the resulting KE
 payload lengths. The KE payload length includes the 8-octet KE
-payload header.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+payload header.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 <span id="name-hqc-ke-payload-lengths-in-o"></span><div id="len-table">
 <table class="center" id="table-2">
           <caption>
@@ -1365,9 +1362,9 @@ payload header.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
           </tbody>
         </table>
 </div>
-<p id="section-3.2-7"><code>K</code> is 32 octets. It is used as the shared secret in the key
+<p id="section-3.2-6"><code>K</code> is 32 octets. It is used as the shared secret in the key
 derivation of <span>[<a href="#RFC7296" class="cite xref">RFC7296</a>]</span> and <span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>, in the same way as the
-(EC)DH shared secret.<a href="#section-3.2-7" class="pilcrow">¶</a></p>
+(EC)DH shared secret.<a href="#section-3.2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="exchanges">
@@ -1407,9 +1404,7 @@ support for IKE fragmentation.<a href="#section-3.3-3" class="pilcrow">¶</a></p
 <a href="#len-table" class="auto internal xref">Table 2</a>. If the check fails, the responder <span class="bcp14">MUST</span> reject <code>ek</code> and
 <span class="bcp14">SHOULD</span> return an INVALID_SYNTAX notification.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
 <p id="section-3.4-3">The initiator <span class="bcp14">MUST</span> check that the length of <code>ct</code> matches
-<a href="#len-table" class="auto internal xref">Table 2</a>. If the check fails, the initiator <span class="bcp14">MUST</span> fail the
-exchange as specified for a failed ciphertext check in Section 2.2 of
-<span>[<a href="#IKEV2-MLKEM" class="cite xref">IKEV2-MLKEM</a>]</span>. In particular, the initiator <span class="bcp14">MUST</span> reject the
+<a href="#len-table" class="auto internal xref">Table 2</a>. If the check fails, the initiator <span class="bcp14">MUST</span> reject the
 ciphertext, log the error, and stop creating the SA, without initiating
 IKE_AUTH or the next IKE_INTERMEDIATE exchange. If the error occurs
 in CREATE_CHILD_SA or IKE_FOLLOWUP_KE, the initiator <span class="bcp14">MUST</span> delete the
@@ -1428,8 +1423,8 @@ derived keys.<a href="#section-3.4-4" class="pilcrow">¶</a></p>
       <h2 id="name-security-considerations">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-4-1">The security considerations of <span>[<a href="#RFC7296" class="cite xref">RFC7296</a>]</span>, <span>[<a href="#RFC9242" class="cite xref">RFC9242</a>]</span>, <span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span>,
-and <span>[<a href="#IKEV2-MLKEM" class="cite xref">IKEV2-MLKEM</a>]</span> apply.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">The security considerations of <span>[<a href="#RFC7296" class="cite xref">RFC7296</a>]</span>, <span>[<a href="#RFC9242" class="cite xref">RFC9242</a>]</span>, and
+<span>[<a href="#RFC9370" class="cite xref">RFC9370</a>]</span> apply.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">This document provides post-quantum key establishment to protect
 against harvest-now-decrypt-later attacks. It does not change IKEv2
 authentication. Resistance to active quantum attackers also requires
@@ -1520,10 +1515,6 @@ exchange. The downgrade considerations of <span>[<a href="#IKEV2-MLKEM" class="c
         <dd>
 <span class="refAuthor">HQC team</span>, <span class="refTitle">"Hamming Quasi-Cyclic (HQC)"</span>, <time datetime="2025-08-22" class="refDate">22 August 2025</time>, <span>&lt;<a href="https://pqc-hqc.org/doc/hqc_specifications_2025_08_22.pdf">https://pqc-hqc.org/doc/hqc_specifications_2025_08_22.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="IKEV2-MLKEM">[IKEV2-MLKEM]</dt>
-        <dd>
-<span class="refAuthor">Kampanakis, P.</span>, <span class="refTitle">"Post-quantum Key Exchange with ML-KEM in the Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-mlkem-09</span>, <time datetime="2026-07-05" class="refDate">5 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
@@ -1561,6 +1552,10 @@ exchange. The downgrade considerations of <span>[<a href="#IKEV2-MLKEM" class="c
         <dd>
 <span class="refAuthor">Smyslov, V.</span> and <span class="refAuthor">C. Patton</span>, <span class="refTitle">"Downgrade Prevention for the Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-downgrade-prevention-08</span>, <time datetime="2026-07-01" class="refDate">1 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-downgrade-prevention-08">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-downgrade-prevention-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="IKEV2-MLKEM">[IKEV2-MLKEM]</dt>
+        <dd>
+<span class="refAuthor">Kampanakis, P.</span>, <span class="refTitle">"Post-quantum Key Exchange with ML-KEM in the Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-mlkem-09</span>, <time datetime="2026-07-05" class="refDate">5 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="IKEV2-RT">[IKEV2-RT]</dt>
         <dd>
 <span class="refAuthor">Smyslov, V.</span> and <span class="refAuthor">T. Reddy.K</span>, <span class="refTitle">"Separate Transports for IKE and ESP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-reliable-transport-08</span>, <time datetime="2026-10-01" class="refDate">1 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-reliable-transport-08">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-reliable-transport-08</a>&gt;</span>. </dd>
@@ -1587,7 +1582,8 @@ exchange. The downgrade considerations of <span>[<a href="#IKEV2-MLKEM" class="c
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">This document follows the structure of <span>[<a href="#IKEV2-MLKEM" class="cite xref">IKEV2-MLKEM</a>]</span>.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">This document follows the structure of <span>[<a href="#IKEV2-MLKEM" class="cite xref">IKEV2-MLKEM</a>]</span>. The authors
+thank Valery Smyslov for his review and comments.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
