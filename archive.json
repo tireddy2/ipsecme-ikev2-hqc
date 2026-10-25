@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-10-22T03:22:17.011102+00:00",
+  "timestamp": "2026-10-25T03:16:57.424450+00:00",
   "repo": "tireddy2/ipsecme-ikev2-hqc",
   "labels": [
     {
@@ -541,26 +541,42 @@
       "id": "PR_kwDOVKhwHM8AAAABJkcX_w",
       "title": "Address comments from Valery",
       "url": "https://github.com/tireddy2/ipsecme-ikev2-hqc/pull/13",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "tireddy2",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2026-10-20T14:20:28Z",
-      "updatedAt": "2026-10-20T14:20:37Z",
+      "updatedAt": "2026-10-24T08:06:58Z",
       "baseRepository": "tireddy2/ipsecme-ikev2-hqc",
       "baseRefName": "main",
       "baseRefOid": "c265f24d7c0db82bc446a5a4df0481b543afbf17",
       "headRepository": "tireddy2/ipsecme-ikev2-hqc",
       "headRefName": "tireddy2-patch-2",
       "headRefOid": "7a5bae0d4ba96fa3884d3ecad84e27d8b7d38c7c",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-10-24T08:06:58Z",
+      "mergedAt": "2026-10-24T08:06:58Z",
+      "mergedBy": "tireddy2",
+      "mergeCommit": {
+        "oid": "35e1a2da7f950de24a67de47142119a97d79bf96"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOVKhwHM8AAAABTqnyZw",
+          "commit": {
+            "abbreviatedOid": "7a5bae0"
+          },
+          "author": "sfluhrer",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-10-22T13:10:24Z",
+          "updatedAt": "2026-10-22T13:10:24Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
